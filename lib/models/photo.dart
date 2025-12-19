@@ -3,16 +3,12 @@ class Photo {
   final String description;
   final String imageUrl;
   final String thumbnailUrl;
-  final int width;
-  final int height;
 
   Photo({
     required this.id,
     required this.description,
     required this.imageUrl,
     required this.thumbnailUrl,
-    required this.width,
-    required this.height,
   });
 
   factory Photo.fromMap(Map<String, dynamic> map) {
@@ -24,8 +20,6 @@ class Photo {
           'No description',
       imageUrl: map['urls']['regular'] as String,
       thumbnailUrl: map['urls']['thumb'] as String,
-      width: map['width'] as int,
-      height: map['height'] as int,
     );
   }
 }

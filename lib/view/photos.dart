@@ -3,7 +3,7 @@ import '../service.dart';
 import '../models/photo.dart';
 
 class PhotosPage extends StatefulWidget {
-  const PhotosPage({Key? key}) : super(key: key);
+  const PhotosPage({super.key});
 
   @override
   State<PhotosPage> createState() => PhotosPageState();
@@ -95,15 +95,11 @@ class PhotosPageState extends State<PhotosPage> {
             ),
           ),
           Expanded(
-            child: FutureBuilder<List<Photo>>(
+            child: FutureBuilder(
               future: photosFuture,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No photos found'));
                 } else {
                   final photos = snapshot.data!;
                   return GridView.builder(
@@ -164,12 +160,12 @@ class PhotosPageState extends State<PhotosPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FloatingActionButton(
-                onPressed: nextPage,
+                onPressed: previousPage,
                 child: const Icon(Icons.arrow_back),
               ),
               const SizedBox(width: 10),
               FloatingActionButton(
-                onPressed: previousPage,
+                onPressed: nextPage,
                 child: const Icon(Icons.arrow_forward),
               ),
             ],
